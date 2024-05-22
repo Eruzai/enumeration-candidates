@@ -3,7 +3,11 @@
 require './candidates'
 
 def find(id)
-  # Your code Here
+  @candidates.each { |candidate|
+  if candidate[:id] == id
+    return candidate
+  end }
+  nil
 end
 
 def experienced?(candidate)
