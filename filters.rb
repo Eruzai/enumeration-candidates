@@ -3,30 +3,21 @@
 require './candidates'
 
 def find(id)
-  @candidates.each { |candidate|
-    if candidate[:id] == id
-      return candidate
-    end
-  }
-  nil
+  @candidates.find { |candidate| candidate[:id] == id }
 end
 
 def experienced?(candidate)
-  if candidate[:years_of_experience] >= 2
-    true
-  else
-    false
-  end
+  candidate[:years_of_experience] >= 2
 end
 
 def qualified_candidates(candidates)
-  qualified = []
-  candidates.each { |candidate|
-    if experienced?(candidate) && hundred_github_points(candidate) && know_ruby_or_python(candidate) && applied_recently(candidate) && legal_age(candidate)
-      qualified << candidate
-    end
-  }
-  qualified
+  candidates.select do |candidate|
+    experienced?(candidate) &&
+    hundred_github_points(candidate) &&
+    know_ruby_or_python(candidate) &&
+    applied_recently(candidate) &&
+    legal_age(candidate)
+  end
 end
 
 def ordered_by_qualifications(candidates)
@@ -35,33 +26,17 @@ end
 
 # More methods will go below
 def hundred_github_points(candidate)
-  if candidate[:github_points] >= 100
-    true
-  else
-    false
-  end
+  candidate[:github_points] >= 100
 end
 
 def know_ruby_or_python(candidate)
-  if candidate[:languages].include?("Ruby") || candidate[:languages].include?("Python")
-    true
-  else
-    false
-  end
+  candidate[:languages].include?("Ruby") || candidate[:languages].include?("Python")
 end
 
 def applied_recently(candidate)
-  if candidate[:date_applied] >= 15.days.ago.to_date
-    true
-  else
-    false
-  end
+  candidate[:date_applied] >= 15.days.ago.to_date
 end
 
 def legal_age(candidate)
-  if candidate[:age] >= 18
-    true
-  else
-    false
-  end
+  candidate[:age] >= 18
 end
