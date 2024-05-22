@@ -29,6 +29,10 @@ def qualified_candidates(candidates)
   qualified
 end
 
+def ordered_by_qualifications(candidates)
+  candidates.sort_by { |candidate| [-candidate[:years_of_experience], -candidate[:github_points]] }
+end
+
 # More methods will go below
 def hundred_github_points(candidate)
   if candidate[:github_points] >= 100
