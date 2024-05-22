@@ -1,16 +1,21 @@
 # In this file we define the methods to help filter out candidates
 # This way, we keep these methods separated from other potential parts of the program
+require './candidates'
 
 def find(id)
-    # Your code Here
+  # Your code Here
+end
+
+def experienced?(candidate)
+  if candidate[:years_of_experience] >= 2
+    true
+  else
+    false
   end
-  
-  def experienced?(candidate)
-    # Your code Here
-  end
-  
-  def qualified_candidates(candidates)
-    # Your code Here
-  end
-  
-  # More methods will go below
+end
+
+def qualified_candidates(candidates)
+  # Your code Here
+end
+
+# More methods will go below
